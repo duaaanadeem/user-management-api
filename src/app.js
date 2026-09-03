@@ -14,10 +14,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// Connect to MongoDB
-connectDB();
-
-// Home / Health Check Route
+// Root / Health Check
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "User Management API is running"
@@ -31,7 +28,10 @@ app.use("/api/users", userRoutes);
 // Error Middleware
 app.use(errorMiddleware);
 
-// Render PORT
+// Connect to MongoDB
+connectDB();
+
+// Start Server
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
